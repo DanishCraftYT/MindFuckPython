@@ -1,0 +1,23 @@
+[Overview]
+
+Overview - starts at line: 1.
+
+[Basics]
+
+{changing to a different index}
+> - goes to the next index.
+< - goes to the previous index.
+
+{changing the value of the index}
++ - increments the value of the index.
+- - decrements the value of the index.
+* - multiplies the value of the index by 2.
+/ - divides the value of the index by 2.
+
+{printing to console}
+. - converts the index to a ascii character. if the index is a float. it will convert it too a int before converting it too a ascii character.
+.! - prints the index.
+.? - goes to the next line in the console.
+
+{get input from console}
+, - takes the first character in the input and converts it to a number.

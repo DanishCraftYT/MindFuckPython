@@ -22,10 +22,10 @@ def main(): # figures out what file to run.
             print(f"file: {files_data[main_input - 1]} doesn't exist")
             input("hit enter to continue")
             main()
-        if not os.path.getsize(files_data[main_input - 1]) > 0: # checks if file is empty.
-            exit()
         with open(files_data[main_input - 1], "r", encoding="utf-8") as f:
             file_data = f.readlines()
+        if not len(file_data) > 0: # checks if file is empty.
+            exit()
     except(IndexError):
         print(f"index: {main_input - 1} is more than {len(files_data)}. please type a lower number")
         input("hit enter to continue")
@@ -39,16 +39,57 @@ def run(file_data): # runs the code in the file.
     for num in range(0, 100):
         array.append(0)
         continue
-    print(len(array))
     array_num = 0 # current number in array.
     line_num = 0 # current line in file.
     while line_num <= len(file_data):
         line = file_data[line_num]
         char_num = 0 # current character in line.
-        while char_num <= len(line[line_num]):
+        while char_num <= len(line):
             char = line[char_num]
+            if char == "<":
+                array_num -= 1
+            elif char == ">":
+                array_num += 1
+            elif char == "+":
+                if array[array_num] + 1 > 127:
+                    array[array_num] = 127
+                else:
+                    array[array_num] += 1
+            elif char == "-":
+                if array[array_num] - 1 < 0:
+                    array[array_num] = 0
+                else:
+                    array[array_num] -= 1
+            elif char == "*":
+                if array[array_num] == array[array_num] * 2 > 127:
+                    array[array_num] = 127
+                else:
+                    array[array_num] = array[array_num] * 2
+            elif char == "/":
+                if array[array_num] == array[array_num] / 2 < 0:
+                    array[array_num] = 0
+                else:
+                    array[array_num] = array[array_num] / 2
+            elif char == ".":
+                try:
+                    if line[char_num + 1] == "!": # putting a "!" after a "." returns the decimal number instead of the ascii character.
+                        print(array[array_num], end="")
+                        char_num += 1
+                    elif line[char_num + 1] == "?": # putting a "?" after a "." goes to the next line in the console.
+                        print("")
+                        char_num += 1
+                    else:
+                        print(chr(int(array[array_num])), end="")
+                except(IndexError):
+                    print(chr(int(array[array_num])), end="")
+            elif char == ",":
+                array[array_num] = ord(input()[0])
+            elif char == "/": # beginning of if statement.
+                pass
+            elif char == "\\": # end of if statement.
+                pass
             char_num += 1
-            if char_num == len(line[line_num]):
+            if char_num == len(line):
                 break
             continue
         line_num += 1
