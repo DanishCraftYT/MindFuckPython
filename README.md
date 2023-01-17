@@ -14,4 +14,5 @@
 
 # 3. Documentation
 
-empty for now.
+* [Text Documentation](https://github.com/DanishCraftYT/MindFuck/blob/master/Docs/Mind%20Fuck%20Text%20Docs.txt)<br>
+* [Github Documentation](https://github.com/DanishCraftYT/MindFuck/blob/master/Docs/Mind Fuck Github Docs.md)<br>
