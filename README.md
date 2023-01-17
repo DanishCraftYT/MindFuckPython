@@ -2,11 +2,11 @@
 
 # 0. Overview
 
-* [MindFuck]()<br>
-* [Overview]()<br>
-* [Installing MindFuck]()<br>
-* [Features]()<br>
-* [Documentation]()<br>
+* [MindFuck](#mindfuck)<br>
+* [Overview](#0-overview)<br>
+* [Installing MindFuck](#1-installing-mindfuck)<br>
+* [Features](#2-features)<br>
+* [Documentation](#3-documentation)<br>
 
 # 1. Installing MindFuck
 
