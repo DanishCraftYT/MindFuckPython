@@ -17,7 +17,4 @@
 
 * [Text Documentation](Docs/Mind%20Fuck%20Text%20Docs.txt)<br>
 * [Github Documentation](Docs/Mind%20Fuck%20Github%20Docs.md)<br>
-
-# 4. Github Commits
-
-* any commits before [INSERT COMMIT HERE] doesn't have a interpreter.<br>
+* 
