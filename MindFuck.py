@@ -40,6 +40,7 @@ def run(file_data): # runs the code in the file.
         array.append(0)
         continue
     print(len(array))
+    array_num = 0 # current number in array.
     line_num = 0 # current line in file.
     while line_num <= len(file_data):
         line = file_data[line_num]
