@@ -1,2 +1,3 @@
 sol:Example Scripts\Test.txt
 sol:Example Scripts\Compatibility Example.txt
+sol:Example Scripts\WhileLoop and Function Example.txt

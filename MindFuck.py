@@ -119,6 +119,9 @@ def run(file_data): # runs the code in the file.
                     elif line[char_num + 1] == "?": # putting a "?" after a "." goes to the next line in the console.
                         print("")
                         char_num += 1
+                    elif line[char_num + 1] == "&": # putting a "&" after a "." returns the current index number.
+                        print(array_num)
+                        char_num += 1
                     else:
                         print(chr(int(array[array_num])), end="")
                 except(IndexError):
