@@ -111,7 +111,6 @@ def run(file_data): # runs the code in the file.
             elif char == "*":
                 if is_unicode_enabled == True:
                     if array[array_num] * 2 > 1023:
-                        print(array[array_num])
                         array[array_num] = 1023
                     else:
                         array[array_num] = array[array_num] * 2

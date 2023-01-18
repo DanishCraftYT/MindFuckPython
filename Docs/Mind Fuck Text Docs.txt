@@ -39,7 +39,7 @@ Example:
     >- # goes to the next index and decrements by 1. the index is now 2. these lines of code repeat until this index reaches 0.
 ] # exits while loop.
 
-{#unicode}
+{#unicode} - default value of "#unicode" is false.
 #unicode true - allows you to use all unicode characters up to 1023.
 #unicode false - allows you use all ascii characters up to 127.
 
