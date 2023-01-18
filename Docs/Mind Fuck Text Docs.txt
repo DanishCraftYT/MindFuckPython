@@ -22,6 +22,10 @@ Overview - starts at line: 1.
 {get input from console}
 , - takes the first character in the input and converts it to a number.
 
+{functions}
+() - put the code of the function inside the "()".
+: - calls the last defined function.
+
 [Files.txt Basics]
 
 {sol:}
