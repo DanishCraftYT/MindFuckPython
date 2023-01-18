@@ -65,11 +65,21 @@ def run(file_data): # runs the code in the file.
     func_start = None
     current_line = None
     current_char = None
+    is_in_function_defined = False # determines if the function has reached ")" right after it has been defined.
     while line_num <= len(file_data):
         line = file_data[line_num]
-        char_num = 0 # current character in line.
+        char_num = 0 # current character in line.¨
         while char_num <= len(line):
             char = line[char_num]
+            if is_in_function_defined == True:
+                if char == ")":
+                    char_num += 1
+                    is_in_function_defined = False
+                    break
+                char_num += 1
+                if char_num == len(line):
+                    break
+                continue
             if char == "<":
                 array_num -= 1
             elif char == ">":
@@ -114,13 +124,19 @@ def run(file_data): # runs the code in the file.
                 pass
             elif char == "(":
                 func_start = line_num
+                func_start_char = char_num + 1
+                is_in_function_defined = True
                 break
             elif char == ":":
-                if func_start == None or current_line == None or current_char == None:
-                    raise FunctionError(f"no function is defined")
                 current_line = line_num
                 current_char = char_num + 1
+                if func_start == None or current_line == None or current_char == None:
+                    raise FunctionError("no function is defined")
                 line_num = func_start
+                char_num = func_start_char
+            elif char == ")":
+                line_num = current_line
+                char_num = current_char
             char_num += 1
             if char_num == len(line):
                 break
