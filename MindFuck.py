@@ -70,6 +70,7 @@ def run(file_data): # runs the code in the file.
     current_char = None
     current_index_num = None
     is_in_function_defined = False # determines if the function has reached ")" right after it has been defined.
+    is_unicode_enabled = False
     while line_num <= len(file_data):
         line = file_data[line_num]
         char_num = 0 # current character in line.¨
@@ -92,22 +93,35 @@ def run(file_data): # runs the code in the file.
             elif char == ">":
                 array_num += 1
             elif char == "+":
-                if array[array_num] + 1 > 127:
-                    array[array_num] = 127
-                else:
-                    array[array_num] += 1
+                if is_unicode_enabled == True:
+                    if array[array_num] + 1 > 1023:
+                        array[array_num] = 1023
+                    else:
+                        array[array_num] += 1
+                elif is_unicode_enabled == False:
+                    if array[array_num] + 1 > 127:
+                        array[array_num] = 127
+                    else:
+                        array[array_num] += 1
             elif char == "-":
                 if array[array_num] - 1 < 0:
                     array[array_num] = 0
                 else:
                     array[array_num] -= 1
             elif char == "*":
-                if array[array_num] == array[array_num] * 2 > 127:
-                    array[array_num] = 127
-                else:
-                    array[array_num] = array[array_num] * 2
+                if is_unicode_enabled == True:
+                    if array[array_num] * 2 > 1023:
+                        print(array[array_num])
+                        array[array_num] = 1023
+                    else:
+                        array[array_num] = array[array_num] * 2
+                elif is_unicode_enabled == False:
+                    if array[array_num] * 2 > 127:
+                        array[array_num] = 127
+                    else:
+                        array[array_num] = array[array_num] * 2
             elif char == "/":
-                if array[array_num] == array[array_num] / 2 < 0:
+                if array[array_num] / 2 < 0:
                     array[array_num] = 0
                 else:
                     array[array_num] = array[array_num] / 2
@@ -164,6 +178,15 @@ def run(file_data): # runs the code in the file.
                     continue
                 char_num = current_char_while + 1
                 line_num = current_line_while
+            elif char == "#":
+                if line[0:13] == "#unicode true":
+                    is_unicode_enabled = True
+                    char_num += 13
+                    continue
+                elif line[0:14] == "#unicode false":
+                    is_unicode_enabled = False
+                    char_num += 14
+                    continue
             char_num += 1
             if char_num == len(line):
                 break
