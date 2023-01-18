@@ -1,2 +1,2 @@
-C:\Users\jona5\Desktop\MindFuck\Example Scripts\Test.txt
-C:\Users\jona5\Desktop\MindFuck\Example Scripts\Compatibility Example.txt
+sol:Example Scripts\Test.txt
+sol:Example Scripts\Compatibility Example.txt

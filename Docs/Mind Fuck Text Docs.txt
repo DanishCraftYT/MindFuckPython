@@ -21,3 +21,12 @@ Overview - starts at line: 1.
 
 {get input from console}
 , - takes the first character in the input and converts it to a number.
+
+[Files.txt Basics]
+
+{sol:}
+putting "sol:" instead of "drive:" will get the path to the folder. the interpreter is inside of.
+
+Example:
+(Without "sol:"): C:\Desktop\MindFuckInterpreter\Scripts\Scripts.txt
+(With "sol:"): sol:Scripts\Script.txt

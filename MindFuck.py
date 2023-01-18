@@ -17,22 +17,40 @@ for path in files_data_newline:
 
 def main(): # figures out what file to run.
     main_input = int(input("type line of path to file in the \"Files.txt\" file here: "))
-    try:
-        if not os.path.exists(files_data[main_input - 1]): # checks if the file exists.
-            print(f"file: {files_data[main_input - 1]} doesn't exist")
+    if files_data[main_input - 1][0:4] == "sol:":
+        try:
+            if not os.path.exists(os.path.join(mf_path, files_data[main_input - 1][4:])):
+                print(f"file: {os.path.join(mf_path, files_data[main_input - 1][4:])}")
+                input("hit enter to continue")
+                main()
+            with open(os.path.join(mf_path, files_data[main_input - 1][4:]), "r", encoding="utf-8") as f:
+                file_data = f.readlines()
+            if not len(file_data) > 0: # checks if file is empty.
+                exit()
+        except(IndexError):
+            print(f"index: {main_input - 1} is more than {len(files_data)}. please type a lower number")
             input("hit enter to continue")
             main()
-        with open(files_data[main_input - 1], "r", encoding="utf-8") as f:
-            file_data = f.readlines()
-        if not len(file_data) > 0: # checks if file is empty.
+        else:
+            run(file_data)
             exit()
-    except(IndexError):
-        print(f"index: {main_input - 1} is more than {len(files_data)}. please type a lower number")
-        input("hit enter to continue")
-        main()
     else:
-        run(file_data)
-        exit()
+        try:
+            if not os.path.exists(files_data[main_input - 1]): # checks if the file exists.
+                print(f"file: {files_data[main_input - 1]} doesn't exist")
+                input("hit enter to continue")
+                main()
+            with open(files_data[main_input - 1], "r", encoding="utf-8") as f:
+                file_data = f.readlines()
+            if not len(file_data) > 0: # checks if file is empty.
+                exit()
+        except(IndexError):
+            print(f"index: {main_input - 1} is more than {len(files_data)}. please type a lower number")
+            input("hit enter to continue")
+            main()
+        else:
+            run(file_data)
+            exit()
 
 def run(file_data): # runs the code in the file.
     array = []
