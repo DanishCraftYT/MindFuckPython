@@ -18,6 +18,9 @@ for path in files_data_newline:
 class FunctionError(Exception):
     pass
 
+class LoopError(Exception):
+    pass
+
 def main(): # figures out what file to run.
     main_input = int(input("type line of path to file in the \"Files.txt\" file here: "))
     if files_data[main_input - 1][0:4] == "sol:":
@@ -65,12 +68,16 @@ def run(file_data): # runs the code in the file.
     func_start = None
     current_line = None
     current_char = None
+    current_index_num = None
     is_in_function_defined = False # determines if the function has reached ")" right after it has been defined.
     while line_num <= len(file_data):
         line = file_data[line_num]
         char_num = 0 # current character in line.¨
         while char_num <= len(line):
-            char = line[char_num]
+            try:
+                char = line[char_num]
+            except(IndexError):
+                break
             if is_in_function_defined == True:
                 if char == ")":
                     char_num += 1
@@ -117,26 +124,43 @@ def run(file_data): # runs the code in the file.
                 except(IndexError):
                     print(chr(int(array[array_num])), end="")
             elif char == ",":
-                array[array_num] = ord(input()[0])
+                in_input = input()
+                if in_input == "":
+                    array[array_num] = 0
+                else:
+                    array[array_num] = ord(input()[0])
             elif char == "/": # beginning of if statement.
                 pass
             elif char == "\\": # end of if statement.
                 pass
-            elif char == "(":
+            elif char == "(": # start of function.
                 func_start = line_num
                 func_start_char = char_num + 1
                 is_in_function_defined = True
                 break
-            elif char == ":":
+            elif char == ":": # calls function.
                 current_line = line_num
                 current_char = char_num + 1
                 if func_start == None or current_line == None or current_char == None:
                     raise FunctionError("no function is defined")
                 line_num = func_start
                 char_num = func_start_char
-            elif char == ")":
+            elif char == ")": # end of function.
                 line_num = current_line
                 char_num = current_char
+            elif char == "[": # start of while loop.
+                current_index_num = array[array_num]
+                current_char_while = char_num + 1
+                current_line_while = line_num
+            elif char == "]": # end of while loop.
+                if current_index_num == None:
+                    raise LoopError("no while loop is defined")
+                current_index_num -= 1
+                if current_index_num == 0:
+                    char_num += 1
+                    continue
+                char_num = current_char_while + 1
+                line_num = current_line_while
             char_num += 1
             if char_num == len(line):
                 break

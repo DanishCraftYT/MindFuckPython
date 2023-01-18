@@ -26,6 +26,18 @@ Overview - starts at line: 1.
 () - put the code of the function inside the "()".
 : - calls the last defined function.
 
+{while loops}
+[] - put the code the while loop should loop.
+- the value of the current index is the value it uses to determine how many times it should loop something.
+- if the value of the current index is 3. it will loop 3 times.
+
+Example:
+>+++ # value of this index is 0. we increment it by 3. it is now 3.
+[ # enters while loop.
+    <. # goes to the previous index and prints a ascii character.
+    >- # goes to the next index and decrements by 1. the index is now 2. these lines of code repeat until this index reaches 0.
+] # exits while loop.
+
 [Files.txt Basics]
 
 {sol:}
