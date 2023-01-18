@@ -15,6 +15,9 @@ for path in files_data_newline:
     files_data.append(path.rstrip("\n"))
     continue
 
+class FunctionError(Exception):
+    pass
+
 def main(): # figures out what file to run.
     main_input = int(input("type line of path to file in the \"Files.txt\" file here: "))
     if files_data[main_input - 1][0:4] == "sol:":
@@ -59,6 +62,9 @@ def run(file_data): # runs the code in the file.
         continue
     array_num = 0 # current number in array.
     line_num = 0 # current line in file.
+    func_start = None
+    current_line = None
+    current_char = None
     while line_num <= len(file_data):
         line = file_data[line_num]
         char_num = 0 # current character in line.
@@ -106,6 +112,15 @@ def run(file_data): # runs the code in the file.
                 pass
             elif char == "\\": # end of if statement.
                 pass
+            elif char == "(":
+                func_start = line_num
+                break
+            elif char == ":":
+                if func_start == None or current_line == None or current_char == None:
+                    raise FunctionError(f"no function is defined")
+                current_line = line_num
+                current_char = char_num + 1
+                line_num = func_start
             char_num += 1
             if char_num == len(line):
                 break
