@@ -1,5 +1,7 @@
 # MindFuck
 
+MindFuck is a improved version of BrainFuck.
+
 # 0. Overview
 
 * [MindFuck](#mindfuck)<br>
