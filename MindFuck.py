@@ -75,7 +75,7 @@ def run(file_data): # runs the code in the file.
         line = file_data[line_num]
         char_num = 0 # current character in line.¨
         while char_num <= len(line):
-            try:
+            try: # used for after functions has been defined and for when while loops are done running.
                 char = line[char_num]
             except(IndexError):
                 break
