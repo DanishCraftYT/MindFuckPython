@@ -16,6 +16,7 @@ MindFuck is a improved version of BrainFuck.
 
 * quality of life improvements to BrainFuck (added multiplication, division and more).
 * compatible with BrainFuck code.
+* has support for if statements.
 * has unicode support.
 
 # 3. Documentation
