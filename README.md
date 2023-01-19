@@ -14,6 +14,10 @@ MindFuck is a improved version of BrainFuck.
 
 # 2. Features
 
+* quality life improvements to BrainFuck.
+* compatible with BrainFuck code.
+* has unicode support.
+
 # 3. Documentation
 
 * [Text Documentation](Docs/Mind%20Fuck%20Text%20Docs.txt)<br>
