@@ -65,15 +65,24 @@ def run(file_data): # runs the code in the file.
         continue
     array_num = 0 # current number in array.
     line_num = 0 # current line in file.
-    func_start = None
-    current_line = None
-    current_char = None
-    current_index_num = None
+    # If Statement Varibles:
+    current_if_operator = "" # the if operator.
+    is_in_if_statement_defined = False # determines if the if statement has reached "}" the the if statement is false.
+    is_finding_second_index = False # if the if statement is finding the second index.
+    find_if_statement_operator = False
+    current_index_num_2 = None # is set to the current index number. used for if statements.
+    # Function Varibles:
     is_in_function_defined = False # determines if the function has reached ")" right after it has been defined.
+    func_start = None # start of function.
+    current_line = None # the current line when calling a function.
+    current_char = None # the current char when calling a function.
+    # While Loop Varibles:
+    current_index_num = None # is set to the current index number. used in if statements and while loops.
+    # Hashtag Varibles:
     is_unicode_enabled = False
     while line_num <= len(file_data):
         line = file_data[line_num]
-        char_num = 0 # current character in line.¨
+        char_num = 0 # current character in line.
         while char_num <= len(line):
             try: # used for after functions has been defined and for when while loops are done running.
                 char = line[char_num]
@@ -88,10 +97,29 @@ def run(file_data): # runs the code in the file.
                 if char_num == len(line):
                     break
                 continue
+            if is_in_if_statement_defined == True:
+                if char == "}":
+                    char_num += 1
+                    is_in_if_statement_defined = False
+                    break
+                char_num += 1
+                if char_num == len(line):
+                    break
+                continue
+            if find_if_statement_operator == True:
+                current_if_operator += char
+                if len(current_if_operator) > 2:
+                    current_if_operator = current_if_operator[0:2]
             if char == "<":
-                array_num -= 1
+                if is_finding_second_index == True:
+                    pass
+                else:
+                    array_num -= 1
             elif char == ">":
-                array_num += 1
+                if is_finding_second_index == True:
+                    pass
+                else:
+                    array_num += 1
             elif char == "+":
                 if is_unicode_enabled == True:
                     if array[array_num] + 1 > 1023:
@@ -146,9 +174,7 @@ def run(file_data): # runs the code in the file.
                 else:
                     array[array_num] = ord(input()[0])
             elif char == "/": # beginning of if statement.
-                pass
-            elif char == "\\": # end of if statement.
-                pass
+                is_finding_second_index = True
             elif char == "(": # start of function.
                 func_start = line_num
                 func_start_char = char_num + 1
@@ -165,18 +191,59 @@ def run(file_data): # runs the code in the file.
                 line_num = current_line
                 char_num = current_char
             elif char == "[": # start of while loop.
-                current_index_num = array[array_num]
-                current_char_while = char_num + 1
-                current_line_while = line_num
+                if is_finding_second_index == True:
+                    current_index_num = array[array_num]
+                else:
+                    current_index_num = array[array_num]
+                    current_char_while = char_num + 1
+                    current_line_while = line_num
             elif char == "]": # end of while loop.
-                if current_index_num == None:
-                    raise LoopError("no while loop is defined")
-                current_index_num -= 1
-                if current_index_num == 0:
-                    char_num += 1
-                    continue
-                char_num = current_char_while + 1
-                line_num = current_line_while
+                if is_finding_second_index == True:
+                    current_index_num_2 = array[array_num]
+                    find_if_statement_operator = True
+                else:
+                    if current_index_num == None:
+                        raise LoopError("no while loop is defined")
+                    current_index_num -= 1
+                    if current_index_num == 0:
+                        char_num += 1
+                        continue
+                    char_num = current_char_while + 1
+                    line_num = current_line_while
+            elif char == "{":
+                find_if_statement_operator = False
+                if current_if_operator[1] != "=":
+                    current_if_operator = current_if_operator[0]
+                if current_if_operator == "<":
+                    if current_index_num < current_index_num_2:
+                        char_num += 1
+                    else:
+                        is_in_if_statement_defined = True
+                elif current_if_operator == ">":
+                    if current_index_num > current_index_num_2:
+                        char_num += 1
+                    else:
+                        is_in_if_statement_defined = True
+                elif current_if_operator == "==":
+                    if current_index_num == current_index_num_2:
+                        char_num += 1
+                    else:
+                        is_in_function_defined = True
+                elif current_if_operator == "!=":
+                    if current_index_num != current_index_num_2:
+                        char_num += 1
+                    else:
+                        is_in_if_statement_defined = True
+                elif current_if_operator == "<=":
+                    if current_index_num <= current_index_num_2:
+                        char_num += 1
+                    else:
+                        is_in_if_statement_defined = True
+                elif current_if_operator == ">=":
+                    if current_index_num >= current_index_num_2:
+                        char_num += 1
+                    else:
+                        is_in_if_statement_defined = True
             elif char == "#":
                 if line[0:13] == "#unicode true":
                     is_unicode_enabled = True
