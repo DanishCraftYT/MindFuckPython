@@ -7,6 +7,11 @@ Development Started:
 January 17, 2023 (1/172023)
 """
 
+"""
+TODO:
+do so you can't put anything after the operator in if statements. [Example: /[>]>[can have code here. Please Fix]{}].
+"""
+
 with open(os.path.join(mf_path, "Files.txt"), "r", encoding="utf-8") as f:
     files_data_newline = f.readlines()
 
@@ -110,17 +115,13 @@ def run(file_data): # runs the code in the file.
                 current_if_operator += char
                 if len(current_if_operator) > 2:
                     current_if_operator = current_if_operator[0:2]
-            if char == "<":
-                if is_finding_second_index == True:
-                    pass
-                else:
+            elif char == "<":
+                if array_num > 0:
                     array_num -= 1
             elif char == ">":
-                if is_finding_second_index == True:
-                    pass
-                else:
+                if array_num < 100:
                     array_num += 1
-            elif char == "+":
+            if char == "+":
                 if is_unicode_enabled == True:
                     if array[array_num] + 1 > 1023:
                         array[array_num] = 1023
@@ -173,7 +174,7 @@ def run(file_data): # runs the code in the file.
                     array[array_num] = 0
                 else:
                     array[array_num] = ord(input()[0])
-            elif char == "/": # beginning of if statement.
+            elif char == "\\": # beginning of if statement.
                 is_finding_second_index = True
             elif char == "(": # start of function.
                 func_start = line_num
@@ -201,6 +202,7 @@ def run(file_data): # runs the code in the file.
                 if is_finding_second_index == True:
                     current_index_num_2 = array[array_num]
                     find_if_statement_operator = True
+                    is_finding_second_index = False
                 else:
                     if current_index_num == None:
                         raise LoopError("no while loop is defined")

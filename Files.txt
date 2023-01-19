@@ -2,3 +2,4 @@ sol:Example Scripts\Test.txt
 sol:Example Scripts\Compatibility Example.txt
 sol:Example Scripts\WhileLoop and Function Example.txt
 sol:Example Scripts\#Unicode Example Script.txt
+sol:Example Scripts\If Statement Test.txt
