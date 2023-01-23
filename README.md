@@ -12,6 +12,8 @@ MindFuck is a improved version of BrainFuck.
 
 # 1. Installing MindFuck
 
+### 1.1. Creating Your First Script
+
 # 2. Features
 
 * quality of life improvements to BrainFuck (added multiplication, division and more).
