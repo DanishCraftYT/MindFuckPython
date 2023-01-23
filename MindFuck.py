@@ -30,8 +30,12 @@ def main(): # figures out what file to run.
     main_input = int(input("type line of path to file in the \"Files.txt\" file here: "))
     if files_data[main_input - 1][0:4] == "sol:":
         try:
+            if os.path.splitext(files_data[main_input - 1])[1].lower() != ".mfs":
+                print(f"file: {os.path.join(mf_path, files_data[main_input - 1][4:])} doesn't end in \".mfs\"")
+                input("hit enter to continue")
+                main()
             if not os.path.exists(os.path.join(mf_path, files_data[main_input - 1][4:])):
-                print(f"file: {os.path.join(mf_path, files_data[main_input - 1][4:])}")
+                print(f"file: {os.path.join(mf_path, files_data[main_input - 1][4:])} doesn't exist")
                 input("hit enter to continue")
                 main()
             with open(os.path.join(mf_path, files_data[main_input - 1][4:]), "r", encoding="utf-8") as f:
@@ -47,6 +51,10 @@ def main(): # figures out what file to run.
             exit()
     else:
         try:
+            if files_data[main_input - 1][-1:-4] != ".mfs":
+                print(f"file: {os.path.join(mf_path, files_data[main_input - 1][4:])} doesn't end in \".mfs\"")
+                input("hit enter to continue")
+                main()
             if not os.path.exists(files_data[main_input - 1]): # checks if the file exists.
                 print(f"file: {files_data[main_input - 1]} doesn't exist")
                 input("hit enter to continue")
