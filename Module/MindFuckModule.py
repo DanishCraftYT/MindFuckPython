@@ -1,24 +1,7 @@
-import os
-
-mf_path = os.path.dirname(__file__)
-
 """
 Development Started:
-January 17, 2023 (1/172023)
+January 27, 2023 (1/172023)
 """
-
-"""
-TODO:
-do so you can't put anything after the operator in if statements. [Example: /[>]>[can have code here. Please Fix]{}].
-"""
-
-with open(os.path.join(mf_path, "Files.txt"), "r", encoding="utf-8") as f:
-    files_data_newline = f.readlines()
-
-files_data = []
-for path in files_data_newline:
-    files_data.append(path.rstrip("\n"))
-    continue
 
 class FunctionError(Exception):
     pass
@@ -32,7 +15,10 @@ class ExtensionError(Exception):
 def run(file_path): # runs the code in the file.
     if file_path[-1:-4] != ".mfs":
         raise ExtensionError(f"file: \"{file_path}\" doesn't end in \".mfs\"")
-    if not len(file_path) > 0: # checks if file is empty.
+    file_data = []
+    with open(file_path, "r", encoding="utf-8") as f:
+        file_data = f.readlines()
+    if not len(file_data) > 0: # checks if file is empty.
         exit()
     array = []
     for num in range(0, 100):
@@ -233,6 +219,3 @@ def run(file_path): # runs the code in the file.
         if line_num == len(file_data):
             break
         continue
-
-if __name__ == "__main__":
-    main()
