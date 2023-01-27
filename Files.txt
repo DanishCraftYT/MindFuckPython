@@ -1,5 +1,5 @@
-sol:Example Scripts\Test.mfs
-sol:Example Scripts\Compatibility Example.mfs
-sol:Example Scripts\WhileLoop and Function Example.mfs
-sol:Example Scripts\#Unicode Example Script.mfs
-sol:Example Scripts\If Statement Test.mfs
+sol:Example Scripts\Test Scripts\Test.mfs
+sol:Example Scripts\Test Scripts\Compatibility Example.mfs
+sol:Example Scripts\Test Scripts\WhileLoop and Function Example.mfs
+sol:Example Scripts\Test Scripts\#Unicode Example Script.mfs
+sol:Example Scripts\Test Scripts\If Statement Test.mfs
