@@ -12,7 +12,16 @@ MindFuck is a improved version of BrainFuck.
 
 # 1. Installing MindFuck
 
+drag the `MindFuck.py` and the `Files.txt` file into a folder.<br>
+
 ### 1.1. Creating Your First Script
+
+make a text file that ends in `.mfs`. make sure to copy the path to the script<br>
+now open the `Files.txt` file and paste the path to the script inside the file and save the file.<br>
+now open the `MindFuck.py` file and type the line where the path to the script is (in the `Files.txt` file) into the console and hit enter.<br>
+now your done. your script should run.<br>
+
+### 1.2. Using MindFuck as a module
 
 # 2. Features
 
