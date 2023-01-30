@@ -13,7 +13,7 @@ class ExtensionError(Exception):
     pass
 
 def run(file_path): # runs the code in the file.
-    if file_path[-1:-4] != ".mfs":
+    if file_path.split(".")[1].lower() != "mfs":
         raise ExtensionError(f"file: \"{file_path}\" doesn't end in \".mfs\"")
     file_data = []
     with open(file_path, "r", encoding="utf-8") as f:

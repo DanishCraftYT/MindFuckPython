@@ -30,7 +30,7 @@ def main(): # figures out what file to run.
     main_input = int(input("type line of path to file in the \"Files.txt\" file here: "))
     if files_data[main_input - 1][0:4] == "sol:":
         try:
-            if os.path.splitext(files_data[main_input - 1])[1].lower() != ".mfs":
+            if files_data[main_input - 1].split(".")[1].lower() != "mfs":
                 print(f"file: {os.path.join(mf_path, files_data[main_input - 1][4:])} doesn't end in \".mfs\"")
                 input("hit enter to continue")
                 main()
@@ -51,7 +51,7 @@ def main(): # figures out what file to run.
             exit()
     else:
         try:
-            if files_data[main_input - 1][-1:-4] != ".mfs":
+            if files_data[main_input - 1].split(".")[1].lower() != "mfs":
                 print(f"file: {os.path.join(mf_path, files_data[main_input - 1][4:])} doesn't end in \".mfs\"")
                 input("hit enter to continue")
                 main()
