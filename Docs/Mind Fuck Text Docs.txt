@@ -75,3 +75,9 @@ putting "sol:" instead of "drive:" will get the path to the folder. the interpre
 Example:
 (Without "sol:"): C:\Desktop\MindFuckInterpreter\Scripts\Scripts.txt
 (With "sol:"): sol:Scripts\Script.txt
+
+[MindFuck Module Functions]
+
+{run() function}
+run(file_path) - runs a MindFuck Script.
+file_path - the path to the MindFuck Script.
