@@ -25,6 +25,11 @@ now your done. your script should run.<br>
 
 ### 1.2. Using MindFuck as a Module
 
+go inside the `Modules` folder and find the file called `MindFuckModule.py`.<br>
+drag the python script into the folder of your own python script.<br>
+open your own python script and type `import MindFuckModule`.<br>
+to run a MindFuck script call the function `run()` and pass the path to the MindFuck script through the function. example: `run(file_path)`.<br>
+
 # 2. Features
 
 * quality of life improvements to BrainFuck (added multiplication, division and more).
