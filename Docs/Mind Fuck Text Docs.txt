@@ -77,8 +77,8 @@ Example:
 putting "sol:" instead of "drive:" will get the path to the folder. the interpreter is inside of.
 
 Example:
-(Without "sol:"): C:\Desktop\MindFuckInterpreter\Scripts\Scripts.txt
-(With "sol:"): sol:Scripts\Script.txt
+(Without "sol:"): C:\Desktop\MindFuckInterpreter\Scripts\Scripts.mfs
+(With "sol:"): sol:Scripts\Script.mfs
 
 [MindFuck Module Functions]
 
