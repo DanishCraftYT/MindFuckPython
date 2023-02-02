@@ -1,0 +1,88 @@
+# Overview
+
+* [Overview]()
+* [MindFuck Info]()
+* [Basics]()
+* [Files.txt Basics]()
+* [MindFuckModule Functions]()
+
+# MindFuck Info
+
+all Mind Fuck files need to end in `.mfs`.<br>
+
+# Basics
+
+{changing to a different index}
+> - goes to the next index.
+< - goes to the previous index.
+
+{changing the value of the index}
++ - increments the value of the index.
+- - decrements the value of the index.
+* - multiplies the value of the index by 2.
+/ - divides the value of the index by 2.
+
+{printing to console}
+. - converts the index to a ascii character. if the index is a float. it will convert it too a int before converting it too a ascii character.
+.! - prints the index.
+.? - goes to the next line in the console.
+.& - returns the current index number.
+
+{get input from console}
+, - takes the first character in the input and converts it to a number.
+
+{functions}
+() - put the code of the function inside the "()".
+: - calls the last defined function.
+
+{while loops}
+[] - put the code the while loop should loop.
+- the value of the current index is the value it uses to determine how many times it should loop something.
+- if the value of the current index is 3. it will loop 3 times.
+
+Example:
+>+++ # value of this index is 0. we increment it by 3. it is now 3.
+[ # enters while loop.
+    <. # goes to the previous index and prints a ascii character.
+    >- # goes to the next index and decrements by 1. the index is now 2. these lines of code repeat until this index reaches 0.
+] # exits while loop.
+
+{if statements}
+\ - begining of if statement.
+[] - within here you put the index it should compare the index with when you used "\".
+operator - after typing "[]" you type the operator you want to use (<, >, <=. >=, ==, !=).
+{} - put all code the if statement should execute if it returns True.
+
+Example:
+(With Comments):
+\[ # gets the first index.
+    >
+    ] # gets the second index it should compare the first index with.
+    > # operator (first index > second index).
+    {
+    code here.
+}
+
+(Without Comments):
+\[>]>{
+    code here.
+}
+
+{#unicode} - default value of "#unicode" is false.
+#unicode true - allows you to use all unicode characters up to 1023.
+#unicode false - allows you use all ascii characters up to 127.
+
+# Files.txt Basics
+
+{sol:}
+putting `sol:` instead of `drive:` will get the path to the folder. the interpreter is inside of.
+
+Example:
+(Without "sol:"): C:\Desktop\MindFuckInterpreter\Scripts\Scripts.mfs
+(With "sol:"): sol:Scripts\Script.mfs
+
+# MindFuckModule Functions
+
+{run() function}
+run(file_path) - runs a MindFuck Script.
+file_path - the path to the MindFuck Script.
