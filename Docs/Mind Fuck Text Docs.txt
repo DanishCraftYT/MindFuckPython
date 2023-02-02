@@ -1,6 +1,10 @@
 [Overview]
 
 Overview - starts at line: 1.
+MindFuck Info - starts at line: 9.
+Basics - starts at line: 12.
+Files.txt Basics - starts at line: 74.
+MindFuckModule Functions - starts at line: 83.
 
 [MindFuck Info]
 all Mind Fuck files need to end in ".mfs".
