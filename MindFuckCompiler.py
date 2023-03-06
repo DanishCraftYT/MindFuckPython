@@ -304,12 +304,12 @@ if __name__ == "__main__":
     if icon_path == None:
         py2exe.freeze(
             console = [{"script": f"{name_of_script}.py"}],
-            options = {"py2exe": {"bundle_options": 0}},
+            options = {"py2exe": {"bundle_options": 0, "dist_dir": os.path.join(mf_path, f"dist")}},
             zipfile = None)
     elif icon_path != None:
         py2exe.freeze(
             console = [{"script": f"{name_of_script}.py", "icon_resources": [(0, icon_path)]}],
-            options = {"py2exe": {"bundle_options": 0}},
+            options = {"py2exe": {"bundle_options": 0, "dist_dir": os.path.join(mf_path, f"dist")}},
             zipfile = None)
     print("finished creating .exe file")
     keep_python_script(name_of_script)

@@ -85,3 +85,8 @@ Example:
 {run() function}
 run(file_path) - runs a MindFuck Script.
 file_path - the path to the MindFuck Script.
+
+{compiler() function}
+compiler() - compiles a MindFuck Script to a .exe file.
+file_path - path to the MindFuck Script.
+icon_path=None - the path to the icon for the .exe file. to use py2exe's default icon don't change this varible. Default = None.
