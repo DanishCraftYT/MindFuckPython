@@ -31,6 +31,8 @@ go inside the `Modules` folder and find the file called `MindFuckModule.py`.<br>
 drag the python script into the folder of your own python script.<br>
 open your own python script and type `import MindFuckModule`.<br>
 to run a MindFuck script call the function `run()` and pass the path to the MindFuck script through the function. example: `run(file_path)`.<br>
+to compile a MindFuck script. use the function `compiler()` and pass the path to the MindFuck script and (if you want to use a icon for the .exe file)
+pass the path to the icon for the .exe file. example: `compiler(file_path, icon_path=None)`.
 
 ### 1.3. The MindFuck Compiler
 
