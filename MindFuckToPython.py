@@ -25,16 +25,57 @@ class ExtensionError(Exception):
     pass
 
 def main():
-    pass
+    main_input = int(input("type line of path to file in the \"Files.txt\" file here: "))
+    if files_data[main_input - 1][0:4] == "sol:":
+        try:
+            if files_data[main_input - 1].split(".")[1].lower() != "mfs":
+                print(f"file: {os.path.join(mf_path, files_data[main_input - 1][4:])} doesn't end in \".mfs\"")
+                input("hit enter to continue")
+                main()
+            if not os.path.exists(os.path.join(mf_path, files_data[main_input - 1][4:])):
+                print(f"file: {os.path.join(mf_path, files_data[main_input - 1][4:])} doesn't exist")
+                input("hit enter to continue")
+                main()
+            with open(os.path.join(mf_path, files_data[main_input - 1][4:]), "r", encoding="utf-8") as f:
+                file_data = f.readlines()
+            if not len(file_data) > 0: # checks if file is empty.
+                exit()
+        except(IndexError):
+            print(f"index: {main_input - 1} is more than {len(files_data)}. please type a lower number")
+            input("hit enter to continue")
+            main()
+        else:
+            convert_to_python(file_data)
+            exit()
+    else:
+        try:
+            if files_data[main_input - 1].split(".")[1].lower() != "mfs":
+                print(f"file: {os.path.join(mf_path, files_data[main_input - 1][4:])} doesn't end in \".mfs\"")
+                input("hit enter to continue")
+                main()
+            if not os.path.exists(files_data[main_input - 1]): # checks if the file exists.
+                print(f"file: {files_data[main_input - 1]} doesn't exist")
+                input("hit enter to continue")
+                main()
+            with open(files_data[main_input - 1], "r", encoding="utf-8") as f:
+                file_data = f.readlines()
+            if not len(file_data) > 0: # checks if file is empty.
+                exit()
+        except(IndexError):
+            print(f"index: {main_input - 1} is more than {len(files_data)}. please type a lower number")
+            input("hit enter to continue")
+            main()
+        else:
+            convert_to_python(file_data)
+            exit()
 
-def ConvertToPython(file_path): # runs the code in the file.
-    if file_path.split(".")[1].lower() != "mfs":
-        raise ExtensionError(f"file: \"{file_path}\" doesn't end in \".mfs\"")
-    file_data = []
-    with open(file_path, "r", encoding="utf-8") as f:
-        file_data = f.readlines()
-    if not len(file_data) > 0: # checks if file is empty.
-        exit()
+def convert_to_python(file_data, file_name): # runs the code in the file.
+    with open(os.path.join(mf_path, "ctp.py"), "w", encoding="utf-8") as f:
+        f.writelines("""array = []
+    for num in range(0, 100):
+        array.append(0)
+        continue
+    array_num = 0 # current number in array.""")
     array = []
     for num in range(0, 100):
         array.append(0)
@@ -88,63 +129,101 @@ def ConvertToPython(file_path): # runs the code in the file.
                     current_if_operator = current_if_operator[0:2]
             elif char == "<":
                 if array_num > 0:
+                    with open(os.path.join(mf_path, "ctp.py"), "a", encoding="utf-8") as f:
+                        f.writelines("""array -= 1""")
                     array_num -= 1
             elif char == ">":
                 if array_num < 100:
+                    with open(os.path.join(mf_path, "ctp.py"), "a", encoding="utf-8") as f:
+                        f.writelines("""array += 1""")
                     array_num += 1
             if char == "+":
                 if is_unicode_enabled == True:
                     if array[array_num] + 1 > 1023:
                         array[array_num] = 1023
+                        with open(os.path.join(mf_path, f"{file_name}.py"), "a", encoding="utf-8") as f:
+                            f.writelines("""array[array_num] = 1023""")
                     else:
                         array[array_num] += 1
+                        with open(os.path.join(mf_path, f"{file_name}.py"), "a", encoding="utf-8") as f:
+                            f.writelines("""array[array_num] += 1""")
                 elif is_unicode_enabled == False:
                     if array[array_num] + 1 > 127:
                         array[array_num] = 127
+                        with open(os.path.join(mf_path, f"{file_name}.py"), "a", encoding="utf-8") as f:
+                            f.writelines("""array[array_num] = 127""")
                     else:
                         array[array_num] += 1
+                        with open(os.path.join(mf_path, f"{file_name}.py"), "a", encoding="utf-8") as f:
+                            f.writelines("""array[array_num] += 1""")
             elif char == "-":
                 if array[array_num] - 1 < 0:
                     array[array_num] = 0
+                    with open(os.path.join(mf_path, f"{file_name}.py"), "a", encoding="utf-8") as f:
+                            f.writelines("""array[array_num] = 0""")
                 else:
                     array[array_num] -= 1
+                    with open(os.path.join(mf_path, f"{file_name}.py"), "a", encoding="utf-8") as f:
+                            f.writelines("""array[array_num] -= 1""")
             elif char == "*":
                 if is_unicode_enabled == True:
                     if array[array_num] * 2 > 1023:
                         array[array_num] = 1023
+                        with open(os.path.join(mf_path, f"{file_name}.py"), "a", encoding="utf-8") as f:
+                            f.writelines("""array[array_num] = 1023""")
                     else:
                         array[array_num] = array[array_num] * 2
+                        with open(os.path.join(mf_path, f"{file_name}.py"), "a", encoding="utf-8") as f:
+                            f.writelines("""array[array_num] = array[array_num] * 2""")
                 elif is_unicode_enabled == False:
                     if array[array_num] * 2 > 127:
                         array[array_num] = 127
+                        with open(os.path.join(mf_path, f"{file_name}.py"), "a", encoding="utf-8") as f:
+                            f.writelines("""array[array_num] = 127""")
                     else:
                         array[array_num] = array[array_num] * 2
+                        with open(os.path.join(mf_path, f"{file_name}.py"), "a", encoding="utf-8") as f:
+                            f.writelines("""array[array_num] = array[array_num] * 2""")
             elif char == "/":
                 if array[array_num] / 2 < 0:
                     array[array_num] = 0
+                    with open(os.path.join(mf_path, f"{file_name}.py"), "a", encoding="utf-8") as f:
+                        f.writelines("""array[array_num] = 0""")
                 else:
                     array[array_num] = array[array_num] / 2
+                    with open(os.path.join(mf_path, f"{file_name}.py"), "a", encoding="utf-8") as f:
+                        f.writelines("""array[array_num] = array[array_num] / 2""")
             elif char == ".":
                 try:
                     if line[char_num + 1] == "!": # putting a "!" after a "." returns the decimal number instead of the ascii character.
-                        print(array[array_num], end="")
+                        with open(os.path.join(mf_path, f"{file_name}.py"), "a", encoding="utf-8") as f:
+                            f.writelines("""print(array[array_num], end="")""")
                         char_num += 1
                     elif line[char_num + 1] == "?": # putting a "?" after a "." goes to the next line in the console.
-                        print("")
+                        with open(os.path.join(mf_path, f"{file_name}.py"), "a", encoding="utf-8") as f:
+                            f.writelines("""print(\"\")""")
                         char_num += 1
                     elif line[char_num + 1] == "&": # putting a "&" after a "." returns the current index number.
-                        print(array_num)
+                        with open(os.path.join(mf_path, f"{file_name}.py"), "a", encoding="utf-8") as f:
+                            f.writelines("""print(array_num)""")
                         char_num += 1
                     else:
-                        print(chr(int(array[array_num])), end="")
+                        with open(os.path.join(mf_path, f"{file_name}.py"), "a", encoding="utf-8") as f:
+                            f.writelines("""print(chr(int(array[array_num])), end="")""")
                 except(IndexError):
                     print(chr(int(array[array_num])), end="")
             elif char == ",":
                 in_input = input()
+                with open(os.path.join(mf_path, f"{file_name}.py"), "a", encoding="utf-8") as f:
+                    f.writelines("""in_input = input()""")
                 if in_input == "":
                     array[array_num] = 0
+                    with open(os.path.join(mf_path, f"{file_name}.py"), "a", encoding="utf-8") as f:
+                        f.writelines("""array[array_num] = 0""")
                 else:
-                    array[array_num] = ord(input()[0])
+                    array[array_num] = ord(in_input[0])
+                    with open(os.path.join(mf_path, f"{file_name}.py"), "a", encoding="utf-8") as f:
+                        f.writelines("""array[array_num] = ord(in_input[0])""")
             elif char == "\\": # beginning of if statement.
                 is_finding_second_index = True
             elif char == "(": # start of function.

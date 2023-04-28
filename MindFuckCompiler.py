@@ -207,7 +207,7 @@ def run(file_data): # runs the code in the file.
                 if in_input == "":
                     array[array_num] = 0
                 else:
-                    array[array_num] = ord(input()[0])
+                    array[array_num] = ord(in_input[0])
             elif char == "\\\\": # beginning of if statement.
                 is_finding_second_index = True
             elif char == "(": # start of function.

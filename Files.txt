@@ -3,3 +3,4 @@ sol:Example Scripts\Test Scripts\Compatibility Example.mfs
 sol:Example Scripts\Test Scripts\WhileLoop and Function Example.mfs
 sol:Example Scripts\Test Scripts\#Unicode Example Script.mfs
 sol:Example Scripts\Test Scripts\If Statement Test.mfs
+sol:Example Scripts\Test Scripts\Test2.mfs
