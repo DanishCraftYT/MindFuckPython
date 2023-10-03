@@ -46,7 +46,6 @@ now hit enter to exit the script. go into the `dist` folder to find the .exe fil
 
 # 2. Features
 
-* compatible with BrainFuck code.<br>
 * has unicode support.<br>
 
 # 3. Documentation
@@ -64,3 +63,4 @@ then the mindfuck compiler compiles the script to a .exe file.<br>
 * implement if statements.<br>
 * make quality of life improvements to BrainFuck (multiplication and division).<br>
 * make a module for the MindFuck V2.0 Interpreter.<br>
+* make it compatible with BrainFuck code (implement while loops and functions).<br>
