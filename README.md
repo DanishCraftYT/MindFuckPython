@@ -42,15 +42,12 @@ after opening the script it will ask you what file to compile in the `Files.txt`
 then it will ask you if you want a icon for the exe file. either paste the file path the image file or type `no` to not use a icon.<br>
 then it will start creating the .exe file. once it is done. it will ask you if you want to delete the `<script_name>.py` file.
 this script contains the code for the .exe file. most of the time you don't need this file. for now. type `yes` to delete the file.<br>
-now hit enter to exit the script. go into the `dist` folder to find the .exe file.
+now hit enter to exit the script. go into the `dist` folder to find the .exe file.<br>
 
 # 2. Features
 
-* quality of life improvements to BrainFuck (added multiplication, division and more).
-* compatible with BrainFuck code.
-* has support for if statements.
-* has unicode support.
-* has a compiler.
+* compatible with BrainFuck code.<br>
+* has unicode support.<br>
 
 # 3. Documentation
 
@@ -61,3 +58,9 @@ now hit enter to exit the script. go into the `dist` folder to find the .exe fil
 the mindfuck compiler creates a new script. this script contains a list with all lines in a mindfuck script.<br>
 the script also contains the mindfuck interpreter. this interpreter interprets the list that contains all the lines from a mindfuck script.<br>
 then the mindfuck compiler compiles the script to a .exe file.<br>
+
+# TODO
+* make a MindFuck V2.0 compiler.<br>
+* implement if statements.<br>
+* make quality of life improvements to BrainFuck (multiplication and division).<br>
+* make a module for the MindFuck V2.0 Interpreter.<br>
