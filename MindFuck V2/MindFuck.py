@@ -18,6 +18,8 @@ def run(file_data : list, file_path : str): # interprets a script.
     array_num = 0 # determines what index in the array the interpreter is pointing at.
     line_num = 0 # determines which line the interpreter should interpret.
     is_unicode_enabled = False # determines if MindFuck only uses Ascii characters or if it also uses Unicode characters.
+    nested_while_loops = 0 # contains the amount nested while loops found inside a while loop.
+    while_loop_data = [] # contains data about while loops.
     while line_num < len(file_data):
         line = file_data[line_num]
         char_num = 0 # determines which character the interpreter should interpret.
@@ -25,10 +27,10 @@ def run(file_data : list, file_path : str): # interprets a script.
             char = line[char_num]
             if char == "<": # moves to the left in the array.
                 if array_num > 0:
-                    array_num - 1
+                    array_num -= 1
             elif char == ">": # moves to the right in the array.
                 if array_num < 100:
-                    array_num + 1
+                    array_num += 1
             elif char == "+": # addition.
                 if is_unicode_enabled == True:
                     if array[array_num] < 1023:
@@ -57,6 +59,34 @@ def run(file_data : list, file_path : str): # interprets a script.
                     array[array_num] = 0
                 else:
                     array[array_num] = ord(in_input[0])
+            elif char == "[": # begining of while loop.
+                nested_while_loops += 1
+                if array[array_num] == 0: # checks if the index in the array is 0. if true. it will not execute the while loop. if false. it will execute the while loop.
+                    first_iteration = True # determines if it's the first iteration of the while loop on the next line.
+                    current_nested_while_loops = nested_while_loops - 1 # contains the current amount of nested while loops before entering a new while loop.
+                    while line_num < len(file_data): # loops through lines of the script until it finds the "]" of the while loop.
+                        line = file_data[line_num]
+                        if first_iteration == True:
+                            char_num2 = char_num + 1
+                            first_iteration = False
+                        else:
+                            char_num2 = 0
+                        while char_num2 < len(line):
+                            char = line[char_num2]
+                            if char == "[":
+                                nested_while_loops += 1
+                            elif char == "]":
+                                nested_while_loops -= 1
+                            char_num2 += 1
+                            continue
+                        if nested_while_loops == current_nested_while_loops:
+                            break
+                        line_num += 1
+                        continue
+                else:
+                    pass
+            elif char == "]": # end of while loop.
+                pass
             elif char == "#": # handles flags for MindFuck.
                 if line[0:13] == "#unicode true": # enables Unicode.
                     is_unicode_enabled = True
