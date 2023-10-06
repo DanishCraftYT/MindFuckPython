@@ -60,14 +60,13 @@ def run(file_data : list, file_path : str): # interprets a script.
                 else:
                     array[array_num] = ord(in_input[0])
             elif char == "[": # begining of while loop.
-                nested_while_loops += 1
                 if array[array_num] == 0: # checks if the index in the array is 0. if true. it will not execute the while loop. if false. it will execute the while loop.
                     first_iteration = True # determines if it's the first iteration of the while loop on the next line.
-                    current_nested_while_loops = nested_while_loops - 1 # contains the current amount of nested while loops before entering a new while loop.
+                    current_nested_while_loops = nested_while_loops # contains the current amount of nested while loops before entering a new while loop.
                     while line_num < len(file_data): # loops through lines of the script until it finds the "]" of the while loop.
                         line = file_data[line_num]
                         if first_iteration == True:
-                            char_num2 = char_num + 1
+                            char_num2 = char_num
                             first_iteration = False
                         else:
                             char_num2 = 0
@@ -84,9 +83,34 @@ def run(file_data : list, file_path : str): # interprets a script.
                         line_num += 1
                         continue
                 else:
-                    pass
+                    first_iteration = True # determines if it's the first iteration of the while loop on the next line.
+                    current_nested_while_loops = nested_while_loops # contains the current amount of nested while loops before entering a new while loop.
+                    while line_num < len(file_data): # gets the line / char number of all nested while loops.
+                        line = file_data[line_num]
+                        if first_iteration == True:
+                            char_num2 = char_num
+                            first_iteration = False
+                        else:
+                            char_num2 = 0
+                        while char_num2 < len(line):
+                            char = line[char_num2]
+                            if char == "[":
+                                nested_while_loops += 1
+                                while_loop_data.append([line_num, char_num2 + 1, array_num])
+                            elif char == "]":
+                                nested_while_loops -= 1
+                            char_num2 += 1
+                            continue
+                        if nested_while_loops == current_nested_while_loops:
+                            line_num, char_num = while_loop_data[nested_while_loops][0:2]
+                            break
+                        line_num += 1
+                        continue
             elif char == "]": # end of while loop.
-                pass
+                if array[while_loop_data[nested_while_loops][2]] != 0:
+                    line_num, char_num = while_loop_data[nested_while_loops][0:2]
+                else:
+                    del while_loop_data[-1] # deletes the data for the while loop once it finishes executing.
             elif char == "#": # handles flags for MindFuck.
                 if line[0:13] == "#unicode true": # enables Unicode.
                     is_unicode_enabled = True
