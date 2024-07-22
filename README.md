@@ -1,6 +1,9 @@
-# MindFuck
+# MindFuckPython Archived
+MindFuckPython has been archived and will no longer receive updates. the new version of MindFuck can be found [here](https://github.com/DanishCraftYT/MindFuck).<br>
 
-MindFuck is a improved version of BrainFuck.
+# MindFuckPython
+
+MindFuck is a improved version of BrainFuck written in Python.<br>
 
 # 0. Overview
 
